@@ -2,32 +2,110 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+@font-face {
+  font-family: 'Epilogue';
+  src: url('../public/fonts/epilogue/Epilogue-Variable.woff2') format('woff2'),
+       url('../public/fonts/epilogue/Epilogue-Variable.woff') format('woff'),
+       url('../public/fonts/epilogue/Epilogue-Variable.ttf') format('truetype');
+       font-weight: 100 900;
+       font-display: swap;
+       font-style: normal;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+@font-face {
+  font-family: 'Epilogue';
+  src: url('../public/fonts/epilogue/Epilogue-VariableItalic.woff2') format('woff2'),
+       url('../public/fonts/epilogue/Epilogue-VariableItalic.woff') format('woff'),
+       url('../public/fonts/epilogue/Epilogue-VariableItalic.ttf') format('truetype');
+       font-weight: 100 900;
+       font-display: swap;
+       font-style: italic;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+@font-face {
+  font-family: 'Boska';
+  src: url('../public/fonts/boska/Boska-Variable.woff2') format('woff2'),
+       url('../public/fonts/boska/Boska-Variable.woff') format('woff'),
+       url('../public/fonts/boska/Boska-Variable.ttf') format('truetype');
+       font-weight: 200 900;
+       font-display: swap;
+       font-style: normal;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+@font-face {
+  font-family: 'Boska';
+  src: url('../public/fonts/boska/Boska-VariableItalic.woff2') format('woff2'),
+       url('../public/fonts/boska/Boska-VariableItalic.woff') format('woff'),
+       url('../public/fonts/boska/Boska-VariableItalic.ttf') format('truetype');
+       font-weight: 200 900;
+       font-display: swap;
+       font-style: italic;
+}
+
+@font-face {
+  font-family: 'Satoshi';
+  src: url('../public/fonts/satoshi/Satoshi-Variable.woff2') format('woff2'),
+       url('../public/fonts/satoshi/Satoshi-Variable.woff') format('woff'),
+       url('../public/fonts/satoshi/Satoshi-Variable.ttf') format('truetype');
+       font-weight: 300 900;
+       font-display: swap;
+       font-style: normal;
+}
+
+@font-face {
+  font-family: 'Satoshi';
+  src: url('../public/fonts/satoshi/Satoshi-VariableItalic.woff2') format('woff2'),
+       url('../public/fonts/satoshi/Satoshi-VariableItalic.woff') format('woff'),
+       url('../public/fonts/satoshi/Satoshi-VariableItalic.ttf') format('truetype');
+       font-weight: 300 900;
+       font-display: swap;
+       font-style: italic;
+}
+
+@base {
+  @layer base {
+    body {
+      font-family: 'satoshi';
+      @apply text-neutral-900;
+    }
+  
+    h1, h2, h3, h4 {
+      @apply font-bold leading-none mb-4 tracking-tighter text-yellow-500;
+      font-family: 'epilogue'
+    }
+  
+    h1 {
+      @apply text-5xl;
+    }
+    
+    h2 {
+      @apply text-5xl;
+    }
+  
+    p {
+      font-family: 'satoshi';
+      margin-bottom: 1.5rem;
+    }
+  
+    a {
+      @apply transition-colors;
+    }
+  
+    a:hover {
+      @apply text-yellow-500;
+    }
+  
+    .boska {
+      font-family: 'boska';
+    }
+  
+    .epilogue {
+      font-family: 'epilogue';
+      @apply tracking-wide;
+    }
+  
+    .satoshi {
+      font-family: 'satoshi';
+    }
   }
 }
