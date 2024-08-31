@@ -1352,3 +1352,185 @@ import ChatUI from '../components/ChatUI';
 
 export default function Home() {
   return
+
+```
+
+---
+
+To take your project a step further by integrating agents from Fetch.ai, you can enable more complex and autonomous interactions within your Next.js application. By leveraging Fetch.ai's agent framework, your application can become more dynamic, enabling automated tasks, data gathering, and even complex decision-making processes. Here’s how you can extend the current setup:
+
+### **1. Understand the Fetch.ai Agent Framework**
+Fetch.ai provides a framework that allows you to create autonomous agents capable of interacting with each other and the environment. These agents can be programmed to perform various tasks, like gathering data, executing transactions, and making decisions based on specific criteria.
+
+### **2. Install and Set Up Fetch.ai**
+Before you integrate Fetch.ai with your Next.js app, you need to set up your environment:
+
+1. **Install Fetch.ai SDK**:
+   - Install the Fetch.ai SDK by following the instructions in their [documentation](https://fetch.ai/docs/examples/getting-started/first-agent).
+   
+   ```bash
+   pip install fetchai
+   ```
+
+2. **Create a Fetch.ai Agent**:
+   - Create a basic Fetch.ai agent by following the [getting started guide](https://fetch.ai/docs/examples/getting-started/first-agent). You can create a Python script for your agent, which might look something like this:
+
+   ```python
+   from fetchai.ledger.crypto import Entity, Address
+   from fetchai.ledger.contract import Contract
+   from fetchai.ledger.api import LedgerApi
+   from fetchai.ledger.api.token import TokenApi
+
+   # Create entity (private key)
+   entity = Entity()
+
+   # Derive an address from the private key
+   address = Address(entity)
+
+   # Create a connection to the ledger
+   api = LedgerApi('localhost', 8100)
+
+   # Query balance
+   balance = api.tokens.balance(address)
+
+   print(f'Address: {address}, Balance: {balance}')
+   ```
+
+### **3. Integrate Fetch.ai with Your Next.js Backend**
+After setting up the Fetch.ai agent, you can integrate it into your Next.js backend API. This allows your application to trigger agent actions in response to user inputs or other events.
+
+1. **Modify the API Route**:
+   - Extend your `ask-ai.ts` API route to incorporate Fetch.ai agent interactions. For example, you might want to use the agent to perform some tasks before or after interacting with the AI model.
+
+```typescript
+import type { NextApiRequest, NextApiResponse } from 'next';
+import axios from 'axios';
+import { runFetchAgent } from '../../lib/fetchAgent'; // Assume this function runs your Fetch.ai agent
+
+type Data = {
+  response?: string;
+  error?: string;
+};
+
+export default async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
+  const { prompt } = req.body;
+
+  try {
+    // Run the Fetch.ai agent
+    const agentResult = await runFetchAgent(prompt);
+
+    // Now interact with Replicate's model
+    const response = await axios.post(
+      'https://api.replicate.com/v1/predictions',
+      {
+        "version": "meta/meta-llama-3-70b-instruct",
+        "input": {
+          "prompt": prompt + " " + agentResult // Use agent's result to modify the prompt
+        }
+      },
+      {
+        headers: {
+          'Authorization': `Token ${process.env.REPLICATE_API_TOKEN}`,
+          'Content-Type': 'application/json'
+        }
+      }
+    );
+
+    const aiResponse = response.data.outputs[0].text;
+    res.status(200).json({ response: aiResponse });
+  } catch (error) {
+    console.error("Error interacting with the AI:", error.response?.data || error.message);
+    res.status(500).json({ error: "Something went wrong." });
+  }
+}
+```
+
+2. **Creating the `runFetchAgent` Function**:
+   - Implement the `runFetchAgent` function in a separate file, such as `lib/fetchAgent.ts`. This function can execute a Fetch.ai agent task, return a result, and then feed that result into the AI interaction:
+
+   ```typescript
+   import { exec } from 'child_process';
+   import util from 'util';
+
+   const execPromise = util.promisify(exec);
+
+   export async function runFetchAgent(prompt: string): Promise<string> {
+     try {
+       const { stdout, stderr } = await execPromise(`python3 path_to_your_agent_script.py "${prompt}"`);
+       
+       if (stderr) {
+         console.error("Agent error:", stderr);
+         return "There was an issue running the agent.";
+       }
+
+       return stdout.trim(); // Assume your agent outputs a result that you can use
+     } catch (error) {
+       console.error("Execution error:", error);
+       return "Agent execution failed.";
+     }
+   }
+   ```
+
+### **4. Enhance the Chat UI for Agent-Driven Responses**
+You can further enhance the chat UI to reflect when the agent is being utilized or to show more complex interactions powered by the Fetch.ai agent.
+
+```typescript
+import React, { useState } from 'react';
+
+const ChatUI: React.FC = () => {
+  const [messages, setMessages] = useState<{ sender: string; text: string }[]>([]);
+  const [userInput, setUserInput] = useState<string>('');
+
+  const handleSendMessage = async () => {
+    if (!userInput.trim()) return;
+
+    setMessages((prevMessages) => [...prevMessages, { sender: 'You', text: userInput }]);
+
+    try {
+      const response = await fetch('/api/ask-ai', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ prompt: userInput })
+      });
+
+      const data = await response.json();
+      setMessages((prevMessages) => [...prevMessages, { sender: 'AI', text: data.response }]);
+    } catch (error) {
+      setMessages((prevMessages) => [...prevMessages, { sender: 'AI', text: 'Sorry, something went wrong.' }]);
+    }
+
+    setUserInput('');
+  };
+
+  return (
+    <div>
+      <div id="chat-window" style={{ border: '1px solid #ccc', padding: '10px', height: '300px', overflowY: 'scroll' }}>
+        {messages.map((msg, index) => (
+          <div key={index}><strong>{msg.sender}:</strong> {msg.text}</div>
+        ))}
+      </div>
+      <input
+        type="text"
+        value={userInput}
+        onChange={(e) => setUserInput(e.target.value)}
+        placeholder="Ask me anything..."
+        style={{ width: '80%', padding: '10px' }}
+      />
+      <button onClick={handleSendMessage} style={{ padding: '10px 20px' }}>Send</button>
+    </div>
+  );
+};
+
+export default ChatUI;
+```
+
+### **5. Deploy and Test**
+After integrating the Fetch.ai agent and updating your API route, deploy your Next.js application and test the full workflow:
+
+1. **Test Interaction**: Ensure that the Fetch.ai agent is correctly invoked and that its output influences the AI’s response.
+2. **Monitor**: Use logs and monitoring tools to track the behavior and performance of both the Fetch.ai agent and the AI model.
+
+### **Conclusion**
+By integrating Fetch.ai with your Next.js application, you add an additional layer of intelligence and autonomy to your app. The Fetch.ai agent can perform specific tasks or gather data that influences the responses generated by the AI model, leading to more dynamic and context-aware interactions for users.
