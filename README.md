@@ -1,5 +1,7 @@
 **Cult Coins: The Future of AI-Native Art and Collectibles**
 
+At Ikigai Labs, we’re revolutionizing the future of digital art with Cult Coins—a new breed of AI-native collectibles. Unlike traditional NFTs, Cult Coins are dynamic, AI-driven characters that evolve and grow over time, creating a unique and interactive experience for collectors. Each persona lives on the Solana blockchain, engaging with users across platforms like Discord and X, making them living entities within the Web3 space. 
+
 **Introduction**
 
 Ikigai Labs stands at the intersection of art, technology, and the evolving Web3 landscape, housing a meticulously curated collection of web3-native art produced between 2007 and 2025. This digital museum celebrates the pioneering creativity of the early NFT era but also gazes into the future with a clear focus on Real-World Art (RWA) integrated with TRACE technology. But beyond the museum walls, a new frontier is emerging—the Cult Coins.
