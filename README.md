@@ -1213,3 +1213,142 @@ After fine-tuning:
 Refer to the official [Replicate documentation](https://replicate.com/docs) for specific details on the parameters you can set and for troubleshooting any issues that may arise during the fine-tuning process.
 
 This approach will help you fine-tune the Meta LLaMA 3 70B Instruct model with your JSONL dataset on Replicate, aligning the model's output with your desired persona and operational context.
+
+---
+
+To integrate a chat UI under the Cult Token image on your Next.js app, where users can interact with the fine-tuned AI model hosted on Replicate, you can follow these steps using TypeScript and React:
+
+### **1. Set Up Your Next.js Project**
+If you haven’t already set up your Next.js project, you can do so with the following command:
+
+```bash
+npx create-next-app@latest my-app --typescript
+cd my-app
+```
+
+### **2. Create the Chat UI Component**
+Next, create a React component for the chat UI. This component will handle user input, display the conversation, and send requests to your backend API.
+
+1. **Create the Chat UI Component**:
+   - In your `components` directory, create a `ChatUI.tsx` file.
+
+```typescript
+import React, { useState } from 'react';
+
+const ChatUI: React.FC = () => {
+  const [messages, setMessages] = useState<{ sender: string; text: string }[]>([]);
+  const [userInput, setUserInput] = useState<string>('');
+
+  const handleSendMessage = async () => {
+    if (!userInput.trim()) return;
+
+    setMessages((prevMessages) => [...prevMessages, { sender: 'You', text: userInput }]);
+
+    try {
+      const response = await fetch('/api/ask-ai', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ prompt: userInput })
+      });
+
+      const data = await response.json();
+      setMessages((prevMessages) => [...prevMessages, { sender: 'AI', text: data.response }]);
+    } catch (error) {
+      setMessages((prevMessages) => [...prevMessages, { sender: 'AI', text: 'Sorry, something went wrong.' }]);
+    }
+
+    setUserInput('');
+  };
+
+  return (
+    <div>
+      <div id="chat-window" style={{ border: '1px solid #ccc', padding: '10px', height: '300px', overflowY: 'scroll' }}>
+        {messages.map((msg, index) => (
+          <div key={index}><strong>{msg.sender}:</strong> {msg.text}</div>
+        ))}
+      </div>
+      <input
+        type="text"
+        value={userInput}
+        onChange={(e) => setUserInput(e.target.value)}
+        placeholder="Ask me anything..."
+        style={{ width: '80%', padding: '10px' }}
+      />
+      <button onClick={handleSendMessage} style={{ padding: '10px 20px' }}>Send</button>
+    </div>
+  );
+};
+
+export default ChatUI;
+```
+
+### **3. Set Up the Backend API Route**
+Create an API route in Next.js that will handle the requests from the chat UI and communicate with the Replicate API.
+
+1. **Create the API Route**:
+   - In your `pages/api` directory, create a file named `ask-ai.ts`.
+
+```typescript
+import type { NextApiRequest, NextApiResponse } from 'next';
+import axios from 'axios';
+
+type Data = {
+  response?: string;
+  error?: string;
+};
+
+export default async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
+  const { prompt } = req.body;
+
+  try {
+    const response = await axios.post(
+      'https://api.replicate.com/v1/predictions',
+      {
+        "version": "meta/meta-llama-3-70b-instruct", // Replace with the correct model version
+        "input": {
+          "prompt": prompt
+        }
+      },
+      {
+        headers: {
+          'Authorization': `Token ${process.env.REPLICATE_API_TOKEN}`, // Secure your token in an environment variable
+          'Content-Type': 'application/json'
+        }
+      }
+    );
+
+    const aiResponse = response.data.outputs[0].text;
+    res.status(200).json({ response: aiResponse });
+  } catch (error) {
+    console.error("Error interacting with the AI:", error.response?.data || error.message);
+    res.status(500).json({ error: "Something went wrong." });
+  }
+}
+```
+
+### **4. Secure Your Replicate API Token**
+Ensure your Replicate API token is stored securely:
+
+1. **Add Your Token to `.env.local`**:
+   - In the root of your project, create a `.env.local` file.
+
+```bash
+REPLICATE_API_TOKEN=your_replicate_api_token_here
+```
+
+2. **Load Environment Variables**:
+   - Next.js automatically loads environment variables from `.env.local`. Make sure to restart your development server after adding this file.
+
+### **5. Display the Chat UI Under the Cult Token Image**
+Embed the `ChatUI` component under the Cult Token image on your app’s page.
+
+1. **Modify Your Page**:
+   - In your `pages/index.tsx` or wherever you want the chat to appear, import and use the `ChatUI` component.
+
+```typescript
+import ChatUI from '../components/ChatUI';
+
+export default function Home() {
+  return
