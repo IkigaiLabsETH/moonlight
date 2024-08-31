@@ -780,3 +780,110 @@ def tweet_message(content):
 - **Scaling**: If your Discord server grows, you may need to optimize how you store and sort reactions, especially if tracking many messages simultaneously.
 
 ---
+
+Generating prompts with personality cues during inference can be a powerful way to guide an AI model's output to align with specific roles in a startup. Below are detailed examples for various classic roles in a startup, each tailored to reflect the personality, tone, and writing style typical of that role.
+
+### **1. CEO (Chief Executive Officer)**
+**Personality Cue**: Visionary, Inspirational, Strategic
+**Example Prompts**:
+- "As a visionary leader focused on long-term growth, how would you approach expanding into new markets?"
+- "In a tone of strategic guidance, outline the key steps to pivot the company in response to a shifting market landscape."
+- "As an inspirational CEO, draft a speech to motivate the team during challenging times."
+
+**Output Expectation**:
+The AI should produce text that is forward-looking, motivational, and strategic, emphasizing growth, vision, and high-level decision-making.
+
+### **2. CTO (Chief Technology Officer)**
+**Personality Cue**: Technical, Innovative, Analytical
+**Example Prompts**:
+- "In a technically detailed and analytical tone, explain how our architecture can scale to meet increasing demand."
+- "As an innovative technology leader, describe how emerging technologies like AI and blockchain could be integrated into our product roadmap."
+- "As a CTO, provide a technical overview of the security measures we should implement in our cloud infrastructure."
+
+**Output Expectation**:
+The AI should deliver responses that are technically rigorous, focusing on innovation, scalability, and security, with an emphasis on cutting-edge technology.
+
+### **3. CFO (Chief Financial Officer)**
+**Personality Cue**: Precise, Risk-Averse, Financially Savvy
+**Example Prompts**:
+- "In a financially conservative tone, outline the potential risks and benefits of pursuing a new funding round."
+- "As a detail-oriented CFO, draft a report on our current cash flow and forecast for the next quarter."
+- "In a risk-averse and analytical manner, provide recommendations for reducing operational costs without impacting growth."
+
+**Output Expectation**:
+The text should be financially precise, focused on risk management, cost-efficiency, and maintaining fiscal health.
+
+### **4. CMO (Chief Marketing Officer)**
+**Personality Cue**: Creative, Persuasive, Customer-Focused
+**Example Prompts**:
+- "In a creative and engaging tone, develop a new marketing campaign aimed at millennials."
+- "As a persuasive CMO, write a pitch for a potential partnership with a leading industry brand."
+- "In a customer-centric voice, outline a strategy for enhancing customer retention through personalized marketing."
+
+**Output Expectation**:
+The AI should generate content that is engaging, creative, and highly customer-focused, with an emphasis on brand positioning and market growth.
+
+### **5. COO (Chief Operating Officer)**
+**Personality Cue**: Efficient, Process-Oriented, Pragmatic
+**Example Prompts**:
+- "As a pragmatic COO, draft an operational plan to streamline our production processes and reduce lead times."
+- "In an efficient and process-oriented tone, provide a strategy for improving our supply chain management."
+- "As a COO focused on operational excellence, outline the key performance indicators (KPIs) we should track to ensure smooth operations."
+
+**Output Expectation**:
+The AI's response should focus on operational efficiency, process optimization, and pragmatic decision-making, with clear and actionable insights.
+
+### **6. Head of Product**
+**Personality Cue**: User-Centric, Innovative, Detail-Oriented
+**Example Prompts**:
+- "In an innovative and user-centric tone, describe how we can enhance the user experience in the next product iteration."
+- "As a detail-oriented product leader, outline the steps for conducting a thorough product market fit analysis."
+- "In a tone that balances creativity and practicality, draft a roadmap for the next six months of product development."
+
+**Output Expectation**:
+The AI should deliver content that is focused on the user experience, innovation in product features, and meticulous planning for product development.
+
+### **7. Head of Sales**
+**Personality Cue**: Persuasive, Goal-Oriented, Relationship-Driven
+**Example Prompts**:
+- "As a goal-oriented sales leader, draft an email to re-engage a key client who has shown signs of churn."
+- "In a persuasive and relationship-driven tone, outline a strategy for entering a new market and acquiring the first 100 customers."
+- "As a sales-focused leader, write a script for a sales call aimed at closing a high-value enterprise deal."
+
+**Output Expectation**:
+The AI should produce text that is highly persuasive, focused on closing deals, building relationships, and achieving sales targets.
+
+### **8. Head of HR**
+**Personality Cue**: Empathetic, People-Centric, Policy-Oriented
+**Example Prompts**:
+- "As an empathetic HR leader, draft a communication to the team addressing concerns about the recent organizational changes."
+- "In a people-centric tone, outline the steps for improving employee engagement and retention."
+- "As a policy-oriented HR head, write a draft of a new company policy on remote work."
+
+**Output Expectation**:
+The AI should generate content that is empathetic, supportive, and focused on policies that enhance employee well-being and organizational culture.
+
+### **9. Head of Engineering**
+**Personality Cue**: Technical, Team-Oriented, Methodical
+**Example Prompts**:
+- "As a methodical engineering leader, outline the process for conducting a code review to ensure high-quality standards."
+- "In a team-oriented and technical tone, describe the steps for onboarding new engineers to the development team."
+- "As a technically rigorous engineering head, draft guidelines for implementing a continuous integration and continuous deployment (CI/CD) pipeline."
+
+**Output Expectation**:
+The response should be technically detailed, focused on engineering best practices, team collaboration, and methodical execution.
+
+### **10. Customer Support Lead**
+**Personality Cue**: Empathetic, Solution-Oriented, Patient
+**Example Prompts**:
+- "As an empathetic customer support leader, write a response to a frustrated customer experiencing issues with their account."
+- "In a solution-oriented tone, draft an FAQ entry for a common technical issue reported by users."
+- "As a patient and understanding support lead, outline a training program for new customer support representatives."
+
+**Output Expectation**:
+The AI should generate content that is supportive, empathetic, and focused on providing clear, effective solutions to customer problems.
+
+### **Summary**
+By using these personality cues in the prompts, the AI model can be directed to generate responses that align with the expected tone, style, and personality of each role. This approach leverages the model’s understanding of context and allows for more nuanced and role-specific outputs.
+
+---
