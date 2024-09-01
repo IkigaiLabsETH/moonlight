@@ -25,16 +25,23 @@ export default function Tokens() {
 
   const [video1, video2] = getRandomVideos(); // Get two random videos
 
+  const handleRedirect = () => {
+    router.push('/tokens'); // Adjust the path as necessary
+  };
+
   return (
-    <main className="bg-black h-screen">
-      <div className="m-auto flex flex-col items-center justify-center h-full">
-        <h1 className="text-5xl text-yellow mb-6 mt-14">COINS WITH PICTURES</h1>
+    <main className="bg-black h-screen"> {/* Set background to black and full height */}
+      <div className="m-auto flex flex-col items-center justify-center h-full"> {/* Center the button vertically and horizontally */}
+        <h1 className="text-5xl text-yellow mb-6 mt-14">COINS WITH PICTURES</h1> {/* Add title with big font */}
         <div className="max-w-screen-2xl m-auto py-5 md:py-10 lg:py-20">
-          <video className="w-full max-w-[480px]" controls>
+          <video className="w-full max-w-[480px]" controls> {/* Center video with max width 480px */}
             <source src={video1} type="video/mp4" /> {/* Use random video 1 */}
             Your browser does not support the video tag.
           </video>
-          <video className="w-full max-w-[480px] mt-4" controls>
+          <button onClick={handleRedirect} className="mt-4 p-6 bg-yellow-500 text-black rounded text-2xl text-center"> {/* Rename button and center it */}
+            Explore 8 Cult Coins by Degen Vibes LLC
+          </button>
+          <video className="w-full max-w-[480px] mt-4" controls> {/* Second video with max width 480px */}
             <source src={video2} type="video/mp4" /> {/* Use random video 2 */}
             Your browser does not support the video tag.
           </video>
