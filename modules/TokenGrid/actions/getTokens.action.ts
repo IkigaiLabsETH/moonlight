@@ -17,5 +17,5 @@ export async function getTokens(): Promise<string[]> {
 
   // return tokens.json()
 
-  return ['a7jpm5unxa9o5ecvbhcqrr6zlczzcrucxr8bvybsgeto', 'euwgfageap4uddybpwvwjzplcryzemgr2pxxw8bji7e5', '2a6cadqwxqszsywkdp2jjgf9bwwg42dh3xgoye7f512r', 'e7rpjcn8sckkzjynjcpjup48ho29khgksfrorjyqms5c']
+  return ['ggqds6nc4wh8vzehkwkk85gunkdxapnhzkzh1jtteask', '6gvwska7snjdn4mqv7ydn4q7ayvnso2ax4tngjbg7cct', 'hmkdgd3mpigz1bthtjevjplhtvslhiqmbjvcazafq4s7', '43uhykfm8y9glvhrws7r7w1hcku6vikdi7j394fasfnz','em5swhrenpvmq6m8oad3ib5k4xeax1ycvxrdnnagtfcd','t7e3cpscmjx9jggv8aqp5gbu14ayfa7ewyolj7bhgac','2x1d1wrifyxglnj5mc7bj3tjurudhvvwdyq6u75vemsc','ho9nf7o2sefimwsfvudk1xj8yl7zbyhar4m6ugczajwd']
 }
