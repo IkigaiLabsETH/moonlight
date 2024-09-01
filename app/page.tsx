@@ -21,7 +21,7 @@ export default function Tokens() {
             Explore 8 Cult Coins by Degen Vibes LLC
           </button>
           <video className="w-full max-w-[480px] mt-4" controls> {/* Second video with max width 480px */}
-            <source src="/second-video.mp4" type="video/mp4" />
+            <source src="/meteora_.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>
