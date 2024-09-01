@@ -1,18 +1,29 @@
-import { TokenGrid, getTokens } from "@/modules/TokenGrid";
+"use client"; // Add this line to mark the component as a Client Component
 
-export default async function Tokens() {
-  const tokens = await getTokens()
-  
+import { useRouter } from 'next/navigation'; // Update the import
+
+export default function Tokens() {
+  const router = useRouter(); // Initialize router
+
+  const handleRedirect = () => {
+    router.push('/tokens'); // Adjust the path as necessary
+  };
+
   return (
-    <main className="">
-      <div className="m-auto">
-        <div className="p-5 md:p-10 lg:p-15 bg-neutral-900 text-center md:text-left">
-          <div className="max-w-screen-2xl m-auto"> 
-            <h1 className="sm:text-2xl md:text-4xl lg:text-8xl">Cult Coins</h1>
-          </div>
-        </div>
+    <main className="bg-black h-screen"> {/* Set background to black and full height */}
+      <div className="m-auto flex flex-col items-center justify-center h-full"> {/* Center the button vertically and horizontally */}
         <div className="max-w-screen-2xl m-auto py-5 md:py-10 lg:py-20">
-          <TokenGrid tokens={tokens}/>
+          <video className="w-full max-w-[480px]" controls> {/* Center video with max width 480px */}
+            <source src="/meteora.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <button onClick={handleRedirect} className="mt-4 p-6 bg-yellow-500 text-black rounded text-2xl text-center"> {/* Rename button and center it */}
+            Explore 8 Cult Coins by Degen Vibes LLC
+          </button>
+          <video className="w-full max-w-[480px] mt-4" controls> {/* Second video with max width 480px */}
+            <source src="/second-video.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
         </div>
       </div>
     </main>
