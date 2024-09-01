@@ -1,8 +1,10 @@
 "use client"; // Add this line to mark the component as a Client Component
 
-import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation'; // Update the import
 
 export default function Tokens() {
+  const router = useRouter(); // Initialize router
+
   const videoSources = [
     '/METEORA_1.mp4',
     '/METEORA_2.mp4',
