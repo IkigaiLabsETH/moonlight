@@ -21,7 +21,7 @@ export default function Tokens() {
   ];
 
   const getRandomVideos = () => {
-    const shuffled = [...videoSources].sort(() => 0.5 - Math.random()); // Create a copy and shuffle the array
+    const shuffled = videoSources.sort(() => 0.5 - Math.random()); // Shuffle the array
     return shuffled.slice(0, 2); // Return the first two videos
   };
 
