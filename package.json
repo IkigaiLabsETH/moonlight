@@ -13,6 +13,7 @@
     "@shadcn/ui": "^0.0.4",
     "@solana/spl-token": "^0.4.8",
     "@solana/web3.js": "^1.95.2",
+    "@wen-moon-ser/moonshot-sdk": "^2.0.5",
     "chart.js": "^4.4.4",
     "clsx": "^2.1.1",
     "graphql": "^16.9.0",
