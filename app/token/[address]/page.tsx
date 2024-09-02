@@ -2,6 +2,7 @@ import { currencyFormatter, formatDate } from "@/common/utils";
 import clsx from "clsx";
 import { map, replace } from "ramda";
 import { FaArrowDownLong, FaArrowUpLong, FaGlobe, FaSeedling, FaTelegram, FaX, FaXTwitter } from "react-icons/fa6";
+import TradingUI from "@/modules/Trading/Trading";
 
 export default async function Tokens({ params: { address } }: { params: { address: string } }) {
   const result = await fetch(`https://api.moonshot.cc/token/v1/solana/${address}`)
@@ -98,6 +99,7 @@ export default async function Tokens({ params: { address } }: { params: { addres
           className="w-full lg:w-1/2 h-screen bg-center bg-cover"
           style={{ backgroundImage: `url(${image})` }}
         ></div>
+        <TradingUI />
       </div>
     </main>
   );
