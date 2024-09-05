@@ -12,8 +12,6 @@ We are building **Cult Coins** on top of **Meteora** and **Moonshot** with **Deg
 
 By solving the liquidity and fee challenges, **Cult Coins** will have better alignment between creators and holders, making memecoins more sustainable and profitable for everyone involved.
 
-What aspect of this approach do you want to dive deeper into?
-
 **Cult Coins: The Future of AI-Native Art and Collectibles**
 
 At Ikigai Labs, we’re revolutionizing the future of digital art with Cult Coins—a new breed of AI-native collectibles. Unlike traditional NFTs, Cult Coins are dynamic, AI-driven characters that evolve and grow over time, creating a unique and interactive experience for collectors. Each persona lives on the Solana blockchain, engaging with users across platforms like Discord and X, making them living entities within the Web3 space. 
