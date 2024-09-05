@@ -1,3 +1,19 @@
+We are building **Cult Coins** on top of **Meteora** and **Moonshot** with **Degen Vibes LLC** to leverage a more sustainable and community-driven model for memecoins. Here's the breakdown:
+
+**Why This Matters:**
+
+1. **Current Memecoin Problems:** Traditional memecoin models rely on short-term gains (pump, dump, and exit) which leads to community takeovers (CTOs), leaving holders with little incentive to stay. Creators lock liquidity for security but lose out on earning fees. This misalignment between creators and holders makes long-term community growth difficult.
+
+2. **The New Meta:** Meteora introduces a mechanism where both creators and holders earn perpetual fees from permanently locked liquidity pools. By integrating these pools, **Moonshot** helps create **community-owned memecoins**, meaning top holders become long-term stakeholders. This model ensures that both creators and early adopters benefit from the token's growth over time, reducing the need for pump-and-dump tactics.
+
+3. **Royalty-Like Fees:** Cult Coins built on Meteora's Memecoin Pools allow creators and holders to continuously earn trading fees. By claiming fees on locked liquidity, there’s a financial incentive to keep building and growing the community. The larger the pool of liquidity and volume, the higher the returns for both parties, transforming memecoins into long-term investments.
+
+4. **Degen Vibes LLC’s Role:** Degen Vibes brings the culture and marketing necessary to attract attention in the memecoin space. It adds the necessary **vibes** that resonate with degens and meme enthusiasts, driving the attention and engagement that grows trading volume and community support. Combined with Meteora and Moonshot’s long-term incentive model, we aim to create memecoins that aren't just short-lived trends but lasting assets for their communities.
+
+By solving the liquidity and fee challenges, **Cult Coins** will have better alignment between creators and holders, making memecoins more sustainable and profitable for everyone involved.
+
+What aspect of this approach do you want to dive deeper into?
+
 **Cult Coins: The Future of AI-Native Art and Collectibles**
 
 At Ikigai Labs, we’re revolutionizing the future of digital art with Cult Coins—a new breed of AI-native collectibles. Unlike traditional NFTs, Cult Coins are dynamic, AI-driven characters that evolve and grow over time, creating a unique and interactive experience for collectors. Each persona lives on the Solana blockchain, engaging with users across platforms like Discord and X, making them living entities within the Web3 space. 
