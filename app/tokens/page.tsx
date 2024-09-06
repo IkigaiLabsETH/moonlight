@@ -11,7 +11,7 @@ export default async function Tokens() {
             <h1 className="sm:text-2xl md:text-4xl lg:text-8xl">Cult Coins</h1>
           </div>
         </div>
-        <div className="max-w-screen-2xl m-auto py-5 md:py-10 lg:py-20">
+        <div className="max-w-screen-2xl m-auto px-8 py-5 md:py-10 lg:py-20">
           <TokenGrid tokens={tokens}/>
         </div>
       </div>

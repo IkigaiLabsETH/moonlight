@@ -1,14 +1,19 @@
+import { buy, sell } from "@/common/moonshot";
 import { currencyFormatter, formatDate } from "@/common/utils";
+import { BuySell } from "@/modules/BuySell";
 import clsx from "clsx";
-import { map, replace } from "ramda";
+import { replace } from "ramda";
 import { FaArrowDownLong, FaArrowUpLong, FaGlobe, FaSeedling, FaTelegram, FaX, FaXTwitter } from "react-icons/fa6";
 
 export default async function Tokens({ params: { address } }: { params: { address: string } }) {
   const result = await fetch(`https://api.moonshot.cc/token/v1/solana/${address}`)
   const tokenData = await result.json()
 
-  const image = replace(/64/g, '2048', tokenData.profile.icon)
-  console.log(tokenData)
+  if (tokenData.error) {
+    return <div>Token not found</div>
+  }
+  const image = replace(/64/g, '2048', tokenData?.profile?.icon)
+
   return (
     <main className="">
       <div className="flex flex-col lg:flex-row w-full bg-black">
@@ -95,9 +100,11 @@ export default async function Tokens({ params: { address } }: { params: { addres
           </div>
         </div>
         <div
-          className="w-full lg:w-1/2 h-screen bg-center bg-cover"
+          className="w-full lg:w-1/2 h-screen bg-center bg-cover flex items-end"
           style={{ backgroundImage: `url(${image})` }}
-        ></div>
+        >
+          <BuySell token={address} />
+        </div>
       </div>
     </main>
   );

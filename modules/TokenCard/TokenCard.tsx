@@ -1,4 +1,3 @@
-
 import { currencyFormatter } from '@/common/utils'
 import clsx from 'clsx'
 import Link from 'next/link'
@@ -14,8 +13,11 @@ export const TokenCard:FC<TokenCardProps> = async ({token}) => {
   const result = await fetch(`https://api.moonshot.cc/token/v1/solana/${token}`)
   const tokenData = await result.json()
 
-  const image = replace(/64/g, '480', tokenData.profile.icon)
+  if (tokenData.error) {
+    return <div className='flex justify-center items-center border-2 font-bold text-neutral-400'>Error loading token</div>
+  }
 
+  const image = replace(/64/g, '480', tokenData?.profile?.icon)
   return (
     <Link href={`/token/${token}`} key={token} className='border-2 border-black transition-all hover:-translate-y-2 hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] h-[32rem]'>
       <div className="overflow-clip h-1/2">
