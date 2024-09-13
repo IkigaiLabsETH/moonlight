@@ -27,9 +27,9 @@ export default function AppWalletProvider({
     ],
     [],
   );
- 
+  
   return (
-    <ConnectionProvider endpoint={endpoint}>
+    <ConnectionProvider endpoint={`${process.env.NEXT_PUBLIC_HELIUS_RPC_URL}/?api-key=${process.env.NEXT_PUBLIC_HELIUS_API_KEY}`}>
       <WalletProvider wallets={wallets} autoConnect>
         <WalletModalProvider>{children}</WalletModalProvider>
       </WalletProvider>

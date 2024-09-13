@@ -7,61 +7,57 @@ import { ComputeBudgetProgram } from "@solana/web3.js";
 import { Environment, FixedSide, Moonshot } from "@wen-moon-ser/moonshot-sdk";
 
 export const getBuyTransaction = async ({ mintAddress, amount, publicKey, blockhash }: any) => {
-  const pk = new PublicKey(publicKey)
-  const rpcUrl = `${process.env.HELIUS_RPC_URL}/?api-key=${process.env.HELIUS_API_KEY}`;
-  const moonshot = new Moonshot({
-    rpcUrl,
-    environment: Environment.MAINNET,
-    chainOptions: {
-      solana: { confirmOptions: { commitment: 'confirmed' } },
-    },
-  });
-  console.log('a', mintAddress)
-  const token = moonshot.Token({
-    mintAddress,
-  });
-  console.log('b')
-  console.log('token', token)
   try {
-
+    const pk = new PublicKey(publicKey)
+    const rpcUrl = `${process.env.HELIUS_RPC_URL}/?api-key=${process.env.HELIUS_API_KEY}`;
+    console.log('rpcUrl', rpcUrl)
+    const moonshot = new Moonshot({
+      rpcUrl,
+      environment: Environment.MAINNET,
+      chainOptions: {
+        solana: { confirmOptions: { commitment: 'confirmed' } },
+      },
+    });
+    console.log('a', mintAddress)
+    const token = moonshot.Token({
+      mintAddress,
+    });
+    console.log('b')
+    console.log('token', token)
     const curvePos = await token.getCurvePosition();
     console.log('Current position of the curve: ', curvePos); // Prints the current curve position
+
+    // make sure creator has funds
+
+    const tokenAmount = BigInt(amount) * 1000000000n; // Buy 10k tokens
+    // Buy example
+    const collateralAmount = await token.getCollateralAmountByTokens({
+      tokenAmount,
+      tradeDirection: 'BUY',
+    });
+    const { ixs } = await token.prepareIxs({
+      slippageBps: 500,
+      creatorPK: pk.toBase58(),
+      tokenAmount,
+      collateralAmount,
+      tradeDirection: 'BUY',
+      fixedSide: FixedSide.OUT, // This means you will get exactly the token amount and slippage is applied to collateral amount
+    });
+    const priorityIx = ComputeBudgetProgram.setComputeUnitPrice({
+      microLamports: 400_000,
+    });
+
+    const messageV0 = new TransactionMessage({
+      payerKey: pk,
+      recentBlockhash: blockhash.blockhash,
+      instructions: [priorityIx, ...ixs],
+    }).compileToV0Message();
+    const transaction = new VersionedTransaction(messageV0);
+  
+    return transaction.serialize()
   } catch (e) {
-    console.log('error', e)
+    console.log(e)
   }
-
-  // make sure creator has funds
-
-  const tokenAmount = BigInt(amount) * 1000000000n; // Buy 10k tokens
-  console.log('afafafd')
-  // Buy example
-  const collateralAmount = await token.getCollateralAmountByTokens({
-    tokenAmount,
-    tradeDirection: 'BUY',
-  });
-  console.log('afafafd')
-  const { ixs } = await token.prepareIxs({
-    slippageBps: 500,
-    creatorPK: pk.toBase58(),
-    tokenAmount,
-    collateralAmount,
-    tradeDirection: 'BUY',
-    fixedSide: FixedSide.OUT, // This means you will get exactly the token amount and slippage is applied to collateral amount
-  });
-  console.log('afafafd')
-  const priorityIx = ComputeBudgetProgram.setComputeUnitPrice({
-    microLamports: 200_000,
-  });
-
-  console.log('afafafd')
-  const messageV0 = new TransactionMessage({
-    payerKey: pk,
-    recentBlockhash: blockhash.blockhash,
-    instructions: [priorityIx, ...ixs],
-  }).compileToV0Message();
-  const transaction = new VersionedTransaction(messageV0);
- 
-  return transaction.serialize()
 }
 
 export const getSellTransaction = async ({ mintAddress, amount, publicKey, blockhash }: any) => {

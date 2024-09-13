@@ -108,17 +108,4 @@ export function getDiscriminator(name: string) {
   return sha256.digest(name).slice(0, 8);
 }
 
-export const currencyFormatter = Intl.NumberFormat('en', { notation: 'compact' })
 
-export const formatDate = (timestamp: string) => {
-  const date = new Date(timestamp)
-  const year = date.getFullYear()
-  const month = date.getMonth() + 1
-  const day = date.getDate()
-  const hours = date.getHours()
-  const minutes = date.getMinutes()
-  const seconds = date.getSeconds()
-
-  // Combine into a readable format
-  return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`
-}

@@ -1,4 +1,4 @@
-import { currencyFormatter } from '@/common/utils'
+import { currencyFormatter } from '@/common/utils/client-utils'
 import clsx from 'clsx'
 import Link from 'next/link'
 import { replace } from 'ramda'
