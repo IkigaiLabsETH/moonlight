@@ -10,7 +10,6 @@ export const getBuyTransaction = async ({ mintAddress, amount, publicKey, blockh
   try {
     const pk = new PublicKey(publicKey)
     const rpcUrl = `${process.env.HELIUS_RPC_URL}/?api-key=${process.env.HELIUS_API_KEY}`;
-    console.log('rpcUrl', rpcUrl)
     const moonshot = new Moonshot({
       rpcUrl,
       environment: Environment.MAINNET,
@@ -18,12 +17,9 @@ export const getBuyTransaction = async ({ mintAddress, amount, publicKey, blockh
         solana: { confirmOptions: { commitment: 'confirmed' } },
       },
     });
-    console.log('a', mintAddress)
     const token = moonshot.Token({
       mintAddress,
     });
-    console.log('b')
-    console.log('token', token)
     const curvePos = await token.getCurvePosition();
     console.log('Current position of the curve: ', curvePos); // Prints the current curve position
 
@@ -44,7 +40,7 @@ export const getBuyTransaction = async ({ mintAddress, amount, publicKey, blockh
       fixedSide: FixedSide.OUT, // This means you will get exactly the token amount and slippage is applied to collateral amount
     });
     const priorityIx = ComputeBudgetProgram.setComputeUnitPrice({
-      microLamports: 400_000,
+      microLamports: 200_000,
     });
 
     const messageV0 = new TransactionMessage({

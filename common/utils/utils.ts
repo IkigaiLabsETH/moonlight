@@ -13,7 +13,6 @@ import fs from "fs";
 export function getOrCreateKeypair(dir: string, keyName: string): Keypair {
   if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
   const authorityKey = dir + "/" + keyName + ".json";
-  console.log(authorityKey)
   if (fs.existsSync(authorityKey)) {
     const data: {
       secretKey: string;
@@ -23,7 +22,6 @@ export function getOrCreateKeypair(dir: string, keyName: string): Keypair {
   } else {
     const keypair = Keypair.generate();
     keypair.secretKey;
-    console.log(authorityKey)
     const a = fs.writeFileSync(
       authorityKey,
       JSON.stringify({
