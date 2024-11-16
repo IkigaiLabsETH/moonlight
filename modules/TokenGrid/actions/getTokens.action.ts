@@ -17,5 +17,5 @@ export async function getTokens(): Promise<string[]> {
 
   // return tokens.json()
 
-  return ['F7bjKTh1hVGPuyAaKHwrUTThS3XPSj5LY8kBegKu8Z3H']
+  return ['F7bjKTh1hVGPuyAaKHwrUTThS3XPSj5LY8kBegKu8Z3H', 'Dvs4JL1xF1QBvNK5jGHTJJivKo1tMk5J2B3iXuR6PyrV']
 }
