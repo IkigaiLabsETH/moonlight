@@ -34,7 +34,7 @@ export default function Tokens() {
   return (
     <main className="bg-black h-screen"> {/* Set background to black and full height */}
       <div className="m-auto flex flex-col items-center justify-center h-full"> {/* Center the button vertically and horizontally */}
-        <h1 className="text-5xl text-yellow mb-6 mt-14">COINS WITH PICTURES</h1> {/* Add title with big font */}
+        <h1 className="text-5xl text-yellow mb-6 mt-14">AICOINS WIF PICTURES</h1> {/* Add title with big font */}
         <div className="max-w-screen-2xl m-auto py-5 md:py-10 lg:py-20">
           <video className="w-full max-w-[480px]" controls> {/* Center video with max width 480px */}
             <source src={video1} type="video/mp4" /> {/* Use random video 1 */}
